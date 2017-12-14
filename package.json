@@ -63,7 +63,8 @@
         "repo": "inovafarma-sorteio",
         "owner": "precisaosistemas",
         "releaseType": "draft"
-      }
+      },
+      "certificateSubjectName": "CN=Precis�o Sistemas, O=Precis�o Sistemas, L=Jales, C=BR"
     },
     "linux": {
       "icon": "build/icons/png"
