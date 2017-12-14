@@ -1,12 +1,13 @@
 {
   "name": "inovafarma-sorteio",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Precisão Sistemas <marcelo@precisaosistemas.com.br>",
   "description": "An electron-vue project",
-  "license": null,
+  "license": "UNLICENSED",
   "main": "./dist/electron/main.js",
   "scripts": {
-    "build": "node .electron-vue/build.js && electron-builder",
+    "build": "node .electron-vue/build.js && electron-builder --win --publish never",
+    "release": "node .electron-vue/build.js && electron-builder --win",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
@@ -19,8 +20,9 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "inovafarma-sorteio",
-    "appId": "org.simulatedgreg.electron-vue",
+    "productName": "INOVAFARMA Sorteio",
+    "artifactName": "${name}-${version}-${os}.${ext}",
+    "appId": "com.precisaosistemas.inovafarma-sorteio",
     "directories": {
       "output": "build"
     },
@@ -43,16 +45,32 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/mac/icon.icns"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/win/icon.ico",
+      "target": [
+        {
+          "target": "nsis-web",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "publish": {
+        "provider": "github",
+        "repo": "inovafarma-sorteio",
+        "owner": "precisaosistemas",
+        "releaseType": "draft"
+      }
     },
     "linux": {
-      "icon": "build/icons"
+      "icon": "build/icons/png"
     }
   },
   "dependencies": {
+    "electron-titlebar-windows": "^3.0.0",
     "element-ui": "^2.0.8",
     "lodash": "^4.17.4",
     "vue": "^2.3.3",

@@ -40,14 +40,14 @@
 
 <script>
   import _ from 'lodash'
-  import Lottie from 'vue-lottie'
+  import lottie from 'vue-lottie/src/lottie.vue'
   import * as boxAnimation from '@/assets/boxAnimation.json'
   import * as bubbleAnimation from '@/assets/bubble.json'
 
   export default {
     name: 'landing-page',
     components: {
-      'lottie': Lottie
+      'lottie': lottie
     },
     data () {
       return {

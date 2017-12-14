@@ -1,16 +1,40 @@
 <template>
   <div id="app">
+    <div id="titlebar"></div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+  const ElectronTitlebarWindows = require('electron-titlebar-windows')
+  const titlebar = new ElectronTitlebarWindows({
+    backgroundColor: '#409EFF',
+    draggable: true
+  })
+  const remote = require('electron').remote
   export default {
-    name: 'inovafarma-sorteio'
+    name: 'inovafarma-sorteio',
+    mounted () {
+      titlebar.appendTo(document.getElementById('titlebar'))
+      titlebar.on('close', (e) => {
+        remote.getCurrentWindow().close()
+      })
+      titlebar.on('minimize', (e) => {
+        remote.getCurrentWindow().minimize()
+      })
+    }
   }
 </script>
 
 <style lang="scss">
+#titlebar {
+  z-index: 200;
+  position: fixed;
+  top:0;right:0;left:0;
+  .titlebar-resize {
+    display: none;
+  }
+}
 #app > .el-row {
   position: relative;
   z-index: 2;

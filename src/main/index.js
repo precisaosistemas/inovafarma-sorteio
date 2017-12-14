@@ -21,12 +21,18 @@ function createWindow () {
    */
   mainWindow = new BrowserWindow({
     width: 500,
-    height: 563,
+    height: 603,
     resizable: false,
-    frame: false
+    frame: false,
+    backgroundColor: '#E3EFF6',
+    show: false
   })
 
   mainWindow.loadURL(winURL)
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 
   mainWindow.on('closed', () => {
     mainWindow = null
